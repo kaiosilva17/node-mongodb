@@ -4,8 +4,9 @@ const Schema = mongoose.Schema({
     nome: String,
     preco: Number,
     tamanho: String,
-    tipo: String
-}, {timestamps: true})
+    tipo: String,
+    ingredientes: [{nome: String, descricao: String}]
+})
 
 const produto = mongoose.model('produto', Schema)
 
