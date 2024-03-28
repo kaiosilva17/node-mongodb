@@ -1,4 +1,5 @@
 const express = require('express')
+const ProdutoController = require('../controllers/ProdutoController')
 const produto = require('../models/Produto')
 const router = express.Router()
 
@@ -6,25 +7,16 @@ router.get('/', function (req, res) {
     res.json({})
 })
 
-router.get('/Produto', async function (req, res) {
-    res.json(await produto.find())
-})
+router.get('/Produto', (req, res) => ProdutoController.getAll(req, res))
 
-router.post('/Produto', async function (req, res) {
-    res.json(await produto.create(req.body))
-})
+router.get('/Produto/:id', (req, res) => ProdutoController.get(req, res))
 
-router.get('/Produto/:id', async function (req, res) {
-    res.json(await produto.findById(req.params.id))
-})
+router.post('/Produto', (req, res) => ProdutoController.create(req, res))
 
-router.delete('/Produto/:id', async function (req, res) {
-    res.json(await produto.findByIdAndDelete(req.params.id))
-})
+router.delete('/Produto/:id', (req, res) => ProdutoController.delete(req, res))
 
-router.put('/Produto/:id', async function (req, res) {
-    res.json(await produto.findByIdAndUpdate(req.params.id, req.body))
-})
+router.put('/Produto/:id', (req, res) => ProdutoController.update(req, res))
+
 
 module.exports = router
 

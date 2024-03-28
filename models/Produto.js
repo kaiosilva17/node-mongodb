@@ -5,7 +5,7 @@ const Schema = mongoose.Schema({
     preco: Number,
     tamanho: String,
     tipo: String
-})
+}, {timestamps: true})
 
 const produto = mongoose.model('produto', Schema)
 
